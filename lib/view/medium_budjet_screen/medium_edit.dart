@@ -7,14 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:royalcars/service/function.dart';
 
 import 'package:royalcars/model/mediumcar/medium_cars_model.dart';
 
 import '../../controlls/add_provider.dart';
 import '../../controlls/dbfunctions_provider.dart';
 import '../../controlls/edit_screen_provider.dart';
-import '../add_screen.dart';
+
 import '../widgets/editpage.dart';
 
 class MediumEditScreen extends StatefulWidget {
@@ -205,7 +204,7 @@ class _MediumEditScreenState extends State<MediumEditScreen> {
           future: futurelx,
           image: imagelx);
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .editCarsP(DataBases.MediumDb, widget.index, update);
+          .editCarsP(DataBases.mediumDb, widget.index, update);
     }
   }
 }

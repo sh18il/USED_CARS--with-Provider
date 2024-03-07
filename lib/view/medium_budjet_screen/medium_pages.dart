@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:royalcars/service/function.dart';
 
 import 'package:royalcars/view/medium_budjet_screen/medium_edit.dart';
 import 'package:royalcars/view/medium_budjet_screen/view_medium_screen.dart';
@@ -12,9 +11,9 @@ import '../../controlls/add_provider.dart';
 import '../../controlls/dbfunctions_provider.dart';
 import '../../controlls/search_lprovider.dart';
 import '../../model/mediumcar/medium_cars_model.dart';
- 
+
 class Midiumcars extends StatelessWidget {
-  Midiumcars({Key? key}) : super(key: key);
+  const Midiumcars({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class Midiumcars extends StatelessWidget {
                         Icons.search,
                         color: Colors.white,
                       ),
-                      hintText: 'Search here.. LoW cars',
+                      hintText: 'Search here.. Medium cars',
                       hintStyle: TextStyle(color: Colors.white),
                       border: InputBorder.none),
                 );
@@ -102,7 +101,7 @@ class Midiumcars extends StatelessWidget {
             itemCount: carsList.length,
             itemBuilder: (context, index) {
               MediumCarsModel car = carsList[index];
-        
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
@@ -181,7 +180,7 @@ class Midiumcars extends StatelessWidget {
                                                         context,
                                                         listen: false)
                                                     .deleteCars(
-                                                        DataBases.MediumDb,
+                                                        DataBases.mediumDb,
                                                         index);
                                                 Navigator.of(context).pop();
                                               },
@@ -240,6 +239,4 @@ class Midiumcars extends StatelessWidget {
             },
           );
   }
-
-
 }

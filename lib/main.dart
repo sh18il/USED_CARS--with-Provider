@@ -10,8 +10,10 @@ import 'package:royalcars/view/widgets/splash_screen.dart';
 import 'controlls/bottom_nav_provider.dart';
 import 'controlls/dbfunctions_provider.dart';
 import 'controlls/edit_screen_provider.dart';
+import 'controlls/login_provider.dart';
 import 'controlls/search_lprovider.dart';
 import 'controlls/settings_provider.dart';
+import 'controlls/sign_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context)=>EditScreenProvider()),
         ChangeNotifierProvider(create: (context)=>SettingsProvider()),
         ChangeNotifierProvider(create: (context)=>BottomNavProvide()),
+        ChangeNotifierProvider(create: (context)=>SignAndLoginProvider()),
+        ChangeNotifierProvider(create: (context)=>LoginProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

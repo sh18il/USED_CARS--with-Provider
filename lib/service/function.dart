@@ -1,11 +1,9 @@
-
 import 'package:hive/hive.dart';
 import 'package:royalcars/model/luxurycar/cars_model.dart';
 import 'package:royalcars/model/mediumcar/medium_cars_model.dart';
 import 'package:royalcars/model/lowcar/low_cars_model.dart';
 
 import '../controlls/add_provider.dart';
-
 
 class DbFunctions {
   Future<void> addCar(DataBases type, value) async {
@@ -17,8 +15,8 @@ class DbFunctions {
 
   Future getAllCars(DataBases type) async {
     final box = await boxForType(type);
-   
-   return box.values.toList();
+
+    return box.values.toList();
   }
 
   Future<void> deleteCar(DataBases type, int index) async {
@@ -37,18 +35,12 @@ class DbFunctions {
 
   Future<Box<dynamic>> boxForType(DataBases type) async {
     switch (type) {
-      case DataBases.LowDb:
+      case DataBases.lowDb:
         return await Hive.openBox<LowCarsModel>('low_cars_db');
-      case DataBases.MediumDb:
+      case DataBases.mediumDb:
         return await Hive.openBox<MediumCarsModel>('medium_cars_db');
-      case DataBases.LuxuryDb:
+      case DataBases.luxuryDb:
         return await Hive.openBox<CarsModel>('luxury_cars_db');
     }
   }
-
-
-
-
 }
-
-

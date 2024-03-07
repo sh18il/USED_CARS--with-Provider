@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-enum DataBases { LuxuryDb, MediumDb, LowDb }
+enum DataBases { luxuryDb, mediumDb, lowDb }
 
 class AddProvider extends ChangeNotifier {
-  DataBases selectedDatabase = DataBases.LuxuryDb;
+  DataBases selectedDatabase = DataBases.luxuryDb;
   final nameContrl = TextEditingController();
   final modelContrl = TextEditingController();
   final kmContrl = TextEditingController();
@@ -19,8 +19,8 @@ class AddProvider extends ChangeNotifier {
 
   File? selectImage;
 
-  Future pickImgGallery(ImageSource) async {
-    final returnImg = await ImagePicker().pickImage(source: ImageSource);
+  Future pickImgGallery(imageSource) async {
+    final returnImg = await ImagePicker().pickImage(source: imageSource);
 
     if (returnImg == null) {
       return;

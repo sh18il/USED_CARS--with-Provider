@@ -10,7 +10,7 @@ class BottomNavProvide extends ChangeNotifier {
   final screens = [
     const HomeScreen(),
     const AddScrees(),
-    ChartScreen(),
+    const ChartScreen(),
     Settings(),
     
   ];

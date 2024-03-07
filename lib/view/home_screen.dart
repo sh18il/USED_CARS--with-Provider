@@ -18,11 +18,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<DbFunctionsProvider>(context, listen: false)
-        .getAllCarsP(DataBases.LuxuryDb);
+        .getAllCarsP(DataBases.luxuryDb);
     Provider.of<DbFunctionsProvider>(context, listen: false)
-        .getAllCarsP(DataBases.MediumDb);
+        .getAllCarsP(DataBases.mediumDb);
     Provider.of<DbFunctionsProvider>(context, listen: false)
-        .getAllCarsP(DataBases.LowDb);
+        .getAllCarsP(DataBases.lowDb);
     log('home');
 
     return Scaffold(
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>  LuxurycarsScreen()));
+                      builder: (context) => const LuxurycarsScreen()));
                 },
                 child: Container(
                   height: 220,
@@ -75,8 +75,8 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>  Midiumcars()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Midiumcars()));
                 },
                 child: Container(
                   height: 220,
@@ -112,8 +112,8 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) =>  LowCars()));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const LowCars()));
                 },
                 child: Container(
                   height: 220,

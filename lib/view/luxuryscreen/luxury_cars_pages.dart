@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:royalcars/service/function.dart';
+
 import 'package:royalcars/model/luxurycar/cars_model.dart';
 
 import 'package:royalcars/view/luxuryscreen/view_luxuy_screen.dart';
@@ -15,13 +15,13 @@ import '../../controlls/search_lprovider.dart';
 import '../editscreen_luxury.dart';
 
 class LuxurycarsScreen extends StatelessWidget {
-  LuxurycarsScreen({Key? key}) : super(key: key);
+  const LuxurycarsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final searchPro = Provider.of<SearchProvider>(context,listen: false);
+    final searchPro = Provider.of<SearchProvider>(context, listen: false);
     Provider.of<DbFunctionsProvider>(context, listen: false)
-        .getAllCarsP(DataBases.LuxuryDb);
+        .getAllCarsP(DataBases.luxuryDb);
     log('Luxury');
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +46,7 @@ class LuxurycarsScreen extends StatelessWidget {
                     Icons.search,
                     color: Colors.white,
                   ),
-                  hintText: 'Search here.. LoW cars',
+                  hintText: 'Search here.. Luxury cars',
                   hintStyle: TextStyle(color: Colors.white),
                   border: InputBorder.none),
             ),
@@ -67,8 +67,6 @@ class LuxurycarsScreen extends StatelessWidget {
           Expanded(
             child:
                 Consumer<DbFunctionsProvider>(builder: (context, provider, _) {
-              
-
               return searchPro.searchLx.isNotEmpty
                   ? provider.searchedListLuxury.isEmpty
                       ? ListView(
@@ -106,7 +104,7 @@ class LuxurycarsScreen extends StatelessWidget {
             itemCount: carsList.length,
             itemBuilder: (context, index) {
               CarsModel car = carsList[index];
-        
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
@@ -186,7 +184,7 @@ class LuxurycarsScreen extends StatelessWidget {
                                                         context,
                                                         listen: false)
                                                     .deleteCars(
-                                                        DataBases.LuxuryDb,
+                                                        DataBases.luxuryDb,
                                                         index);
                                                 Navigator.of(context).pop();
                                               },
@@ -242,6 +240,4 @@ class LuxurycarsScreen extends StatelessWidget {
             },
           );
   }
-
-
 }

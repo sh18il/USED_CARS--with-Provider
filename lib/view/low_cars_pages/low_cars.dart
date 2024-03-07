@@ -11,11 +11,9 @@ import 'package:royalcars/view/low_cars_pages/view_low_cars.dart';
 import '../../controlls/add_provider.dart';
 import '../../controlls/dbfunctions_provider.dart';
 import '../../controlls/search_lprovider.dart';
-import '../../service/function.dart';
-import '../add_screen.dart';
 
 class LowCars extends StatelessWidget {
-  LowCars({super.key});
+  const LowCars({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +105,7 @@ class LowCars extends StatelessWidget {
             itemCount: carsList.length,
             itemBuilder: (context, index) {
               LowCarsModel car = carsList[index];
-            
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
@@ -187,7 +185,7 @@ class LowCars extends StatelessWidget {
                                                         context,
                                                         listen: false)
                                                     .deleteCars(
-                                                        DataBases.LowDb, index);
+                                                        DataBases.lowDb, index);
                                                 Navigator.of(context).pop();
                                               },
                                               child: const Text('Delete'),
@@ -245,5 +243,4 @@ class LowCars extends StatelessWidget {
             },
           );
   }
-
 }

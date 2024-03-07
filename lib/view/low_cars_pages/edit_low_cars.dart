@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:royalcars/model/lowcar/low_cars_model.dart';
 
-
 import 'package:royalcars/view/widgets/editpage.dart';
 
 import '../../controlls/add_provider.dart';
@@ -82,15 +81,15 @@ class _EditLuxuryState extends State<EditLowCarScreen> {
               Center(
                 child: SizedBox(
                   height: 200,
-                  child: Consumer<EditScreenProvider>(
-                    builder: (context,pro,_) {
-                      return Image(
-                        image: pro.selectImage != null
-                            ? FileImage(pro.selectImage!)
-                            : const AssetImage("image/carr1.png") as ImageProvider,
-                      );
-                    }
-                  ),
+                  child:
+                      Consumer<EditScreenProvider>(builder: (context, pro, _) {
+                    return Image(
+                      image: pro.selectImage != null
+                          ? FileImage(pro.selectImage!)
+                          : const AssetImage("image/carr1.png")
+                              as ImageProvider,
+                    );
+                  }),
                 ),
               ),
               const Gap(20),
@@ -202,7 +201,7 @@ class _EditLuxuryState extends State<EditLowCarScreen> {
           future: futurelx,
           image: imagelx);
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .editCarsP(DataBases.LowDb, widget.index, update);
+          .editCarsP(DataBases.lowDb, widget.index, update);
     }
   }
 }

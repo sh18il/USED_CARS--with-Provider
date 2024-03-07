@@ -8,16 +8,17 @@ import 'package:royalcars/controlls/dbfunctions_provider.dart';
 import 'package:royalcars/model/lowcar/low_cars_model.dart';
 import 'package:royalcars/model/luxurycar/cars_model.dart';
 import 'package:royalcars/model/mediumcar/medium_cars_model.dart';
-import 'package:royalcars/service/function.dart';
 
 class ChartScreen extends StatelessWidget {
+  const ChartScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     log('chart');
     final dbProvider = Provider.of<DbFunctionsProvider>(context, listen: false);
-    dbProvider.getAllCarsP(DataBases.LowDb);
-    dbProvider.getAllCarsP(DataBases.LuxuryDb);
-    dbProvider.getAllCarsP(DataBases.MediumDb);
+    dbProvider.getAllCarsP(DataBases.lowDb);
+    dbProvider.getAllCarsP(DataBases.luxuryDb);
+    dbProvider.getAllCarsP(DataBases.mediumDb);
 
     final List<CarsModel> luxuryCar = dbProvider.carsListNotifier;
     final List<LowCarsModel> lowCar = dbProvider.carsLowListNotifier;

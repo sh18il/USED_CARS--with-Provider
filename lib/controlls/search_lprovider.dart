@@ -23,10 +23,10 @@ class SearchProvider extends ChangeNotifier {
   void searchListUpdateMedium(context) {
     final dbprovider = Provider.of<DbFunctionsProvider>(context, listen: false);
 
-    dbprovider.getAllCarsP(DataBases.MediumDb);
+    dbprovider.getAllCarsP(DataBases.mediumDb);
     final filterdListM = dbprovider.carsMediumListNotifier
-        .where((MediumCarsModel) =>
-            MediumCarsModel.name.toLowerCase().contains(searchM.toLowerCase()))
+        .where((mediumCarsModel) =>
+            mediumCarsModel.name.toLowerCase().contains(searchM.toLowerCase()))
         .toList();
     dbprovider.filteredSearchM(filterdListM);
   }
@@ -35,10 +35,9 @@ class SearchProvider extends ChangeNotifier {
   void searchListUpdateLow(context) {
     final dbprovider = Provider.of<DbFunctionsProvider>(context, listen: false);
 
-   
     final filterdListL = dbprovider.carsLowListNotifier
-        .where((car) =>
-            car.name.toLowerCase().contains(searchLow.toLowerCase()))
+        .where(
+            (car) => car.name.toLowerCase().contains(searchLow.toLowerCase()))
         .toList();
     dbprovider.filteredSearchL(filterdListL);
   }

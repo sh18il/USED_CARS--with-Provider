@@ -81,15 +81,15 @@ class _EditLuxuryState extends State<EditLuxury> {
               Center(
                 child: SizedBox(
                   height: 200,
-                  child: Consumer<EditScreenProvider>(
-                    builder: (context,pro,_) {
-                      return Image(
-                        image: pro.selectImage != null
-                            ? FileImage(pro.selectImage!)
-                            : const AssetImage("image/carr1.png") as ImageProvider,
-                      );
-                    }
-                  ),
+                  child:
+                      Consumer<EditScreenProvider>(builder: (context, pro, _) {
+                    return Image(
+                      image: pro.selectImage != null
+                          ? FileImage(pro.selectImage!)
+                          : const AssetImage("image/carr1.png")
+                              as ImageProvider,
+                    );
+                  }),
                 ),
               ),
               const Gap(20),
@@ -201,7 +201,7 @@ class _EditLuxuryState extends State<EditLuxury> {
           future: futurelx,
           image: imagelx);
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .editCarsP(DataBases.LuxuryDb, widget.index, update);
+          .editCarsP(DataBases.luxuryDb, widget.index, update);
     }
   }
 }

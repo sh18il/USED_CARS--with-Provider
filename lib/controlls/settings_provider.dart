@@ -10,6 +10,9 @@ import 'package:royalcars/view/privacypolicy.dart';
 import 'package:royalcars/view/widgets/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'login_provider.dart';
+import 'sign_provider.dart';
+
 class SettingsProvider extends ChangeNotifier {
   bool _isLoggedIn = true;
 
@@ -107,6 +110,9 @@ class SettingsProvider extends ChangeNotifier {
                 );
                 Provider.of<BottomNavProvide>(context, listen: false)
                     .currentIndex = 0;
+
+                Provider.of<SignAndLoginProvider>(context,listen: false).clearSign();
+                Provider.of<LoginProvider>(context,listen: false).clearLogin();
               },
             ),
           ],

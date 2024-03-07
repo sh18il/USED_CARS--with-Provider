@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:royalcars/controlls/add_provider.dart';
-import 'package:royalcars/service/function.dart';
 import 'package:royalcars/model/luxurycar/cars_model.dart';
 import 'package:royalcars/model/lowcar/low_cars_model.dart';
 import 'package:royalcars/model/mediumcar/medium_cars_model.dart';
@@ -83,7 +82,7 @@ class AddScrees extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      addFormFieldW(
+                      AddFormFieldW(
                           width: 172,
                           keyboardType: TextInputType.text,
                           hintText: 'NAME',
@@ -91,13 +90,11 @@ class AddScrees extends StatelessWidget {
                           gradient: const LinearGradient(
                             colors: [Colors.blue, Colors.red, Colors.green],
                           )),
-                      addFormFieldW(
+                      AddFormFieldW(
                           width: 107,
                           keyboardType: TextInputType.number,
-                          
                           hintText: 'MODEL',
                           controller: addScreenProvider.modelContrl,
-                          
                           gradient: const LinearGradient(
                             colors: [Colors.yellow, Colors.red, Colors.blue],
                           )),
@@ -107,7 +104,7 @@ class AddScrees extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      addFormFieldW(
+                      AddFormFieldW(
                           width: 119,
                           keyboardType: TextInputType.number,
                           hintText: 'KM',
@@ -115,7 +112,7 @@ class AddScrees extends StatelessWidget {
                           gradient: const LinearGradient(
                             colors: [Colors.green, Colors.red, Colors.black],
                           )),
-                      addFormFieldW(
+                      AddFormFieldW(
                           width: 146,
                           keyboardType: TextInputType.multiline,
                           hintText: 'DL NUMBER',
@@ -129,7 +126,7 @@ class AddScrees extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      addFormFieldW(
+                      AddFormFieldW(
                         width: 107,
                         keyboardType: TextInputType.number,
                         hintText: 'OWNERSHIP',
@@ -138,7 +135,7 @@ class AddScrees extends StatelessWidget {
                           colors: [Colors.green, Colors.red, Colors.black],
                         ),
                       ),
-                      addFormFieldW(
+                      AddFormFieldW(
                           width: 174,
                           keyboardType: TextInputType.number,
                           hintText: 'PRICE',
@@ -155,15 +152,15 @@ class AddScrees extends StatelessWidget {
                           value: provider.selectedDatabase,
                           items: const [
                             DropdownMenuItem(
-                              value: DataBases.LuxuryDb,
+                              value: DataBases.luxuryDb,
                               child: Text('Luxury'),
                             ),
                             DropdownMenuItem(
-                              value: DataBases.MediumDb,
+                              value: DataBases.mediumDb,
                               child: Text('MEDIUM'),
                             ),
                             DropdownMenuItem(
-                              value: DataBases.LowDb,
+                              value: DataBases.lowDb,
                               child: Text('LOW'),
                             ),
                           ],
@@ -175,7 +172,7 @@ class AddScrees extends StatelessWidget {
                     ],
                   ),
                   const Gap(30),
-                  addFormFieldW(
+                  AddFormFieldW(
                       width: 223,
                       keyboardType: TextInputType.text,
                       hintText: 'FUETERS',
@@ -231,15 +228,15 @@ class AddScrees extends StatelessWidget {
 
   Future<void> onAddCarsButn(context) async {
     log('dddd');
-    final AddbuttonProvider = Provider.of<AddProvider>(context, listen: false);
-    if (AddbuttonProvider.selectedDatabase == DataBases.LuxuryDb) {
-      final name = AddbuttonProvider.nameContrl.text;
-      final model = AddbuttonProvider.modelContrl.text;
-      final km = AddbuttonProvider.kmContrl.text;
-      final dlnbr = AddbuttonProvider.dlNumberContrl.text;
-      final owner = AddbuttonProvider.ownerContrl.text;
-      final price = AddbuttonProvider.priceContrl.text;
-      final future = AddbuttonProvider.futureContrl.text;
+    final addbuttonProvider = Provider.of<AddProvider>(context, listen: false);
+    if (addbuttonProvider.selectedDatabase == DataBases.luxuryDb) {
+      final name = addbuttonProvider.nameContrl.text;
+      final model = addbuttonProvider.modelContrl.text;
+      final km = addbuttonProvider.kmContrl.text;
+      final dlnbr = addbuttonProvider.dlNumberContrl.text;
+      final owner = addbuttonProvider.ownerContrl.text;
+      final price = addbuttonProvider.priceContrl.text;
+      final future = addbuttonProvider.futureContrl.text;
 
       if (name.isEmpty ||
           model.isEmpty ||
@@ -259,18 +256,18 @@ class AddScrees extends StatelessWidget {
           owner: owner,
           price: price,
           future: future,
-          image: AddbuttonProvider.selectImage!.path);
+          image: addbuttonProvider.selectImage!.path);
 
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .addCars(DataBases.LuxuryDb, cars);
-    } else if (AddbuttonProvider.selectedDatabase == DataBases.MediumDb) {
-      final name = AddbuttonProvider.nameContrl.text;
-      final model = AddbuttonProvider.modelContrl.text;
-      final km = AddbuttonProvider.kmContrl.text;
-      final dlnbr = AddbuttonProvider.dlNumberContrl.text;
-      final owner = AddbuttonProvider.ownerContrl.text;
-      final price = AddbuttonProvider.priceContrl.text;
-      final future = AddbuttonProvider.futureContrl.text;
+          .addCars(DataBases.luxuryDb, cars);
+    } else if (addbuttonProvider.selectedDatabase == DataBases.mediumDb) {
+      final name = addbuttonProvider.nameContrl.text;
+      final model = addbuttonProvider.modelContrl.text;
+      final km = addbuttonProvider.kmContrl.text;
+      final dlnbr = addbuttonProvider.dlNumberContrl.text;
+      final owner = addbuttonProvider.ownerContrl.text;
+      final price = addbuttonProvider.priceContrl.text;
+      final future = addbuttonProvider.futureContrl.text;
 
       if (name.isEmpty ||
           model.isEmpty ||
@@ -290,18 +287,18 @@ class AddScrees extends StatelessWidget {
           owner: owner,
           price: price,
           future: future,
-          image: AddbuttonProvider.selectImage!.path);
+          image: addbuttonProvider.selectImage!.path);
 
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .addCars(DataBases.MediumDb, cars);
-    } else if (AddbuttonProvider.selectedDatabase == DataBases.LowDb) {
-      final name = AddbuttonProvider.nameContrl.text;
-      final model = AddbuttonProvider.modelContrl.text;
-      final km = AddbuttonProvider.kmContrl.text;
-      final dlnbr = AddbuttonProvider.dlNumberContrl.text;
-      final owner = AddbuttonProvider.ownerContrl.text;
-      final price = AddbuttonProvider.priceContrl.text;
-      final future = AddbuttonProvider.futureContrl.text;
+          .addCars(DataBases.mediumDb, cars);
+    } else if (addbuttonProvider.selectedDatabase == DataBases.lowDb) {
+      final name = addbuttonProvider.nameContrl.text;
+      final model = addbuttonProvider.modelContrl.text;
+      final km = addbuttonProvider.kmContrl.text;
+      final dlnbr = addbuttonProvider.dlNumberContrl.text;
+      final owner = addbuttonProvider.ownerContrl.text;
+      final price = addbuttonProvider.priceContrl.text;
+      final future = addbuttonProvider.futureContrl.text;
 
       if (name.isEmpty ||
           model.isEmpty ||
@@ -321,10 +318,10 @@ class AddScrees extends StatelessWidget {
           owner: owner,
           price: price,
           future: future,
-          image: AddbuttonProvider.selectImage!.path);
+          image: addbuttonProvider.selectImage!.path);
 
       Provider.of<DbFunctionsProvider>(context, listen: false)
-          .addCars(DataBases.LowDb, cars);
+          .addCars(DataBases.lowDb, cars);
     }
   }
 }

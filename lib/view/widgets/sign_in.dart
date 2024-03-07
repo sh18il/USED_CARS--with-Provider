@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:royalcars/view/widgets/bottombar.dart';
 
+import '../../controlls/login_provider.dart';
+import '../../controlls/sign_provider.dart';
 import 'register.dart';
 
 class Singin extends StatelessWidget {
@@ -13,12 +18,11 @@ class Singin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usernameCntrl = TextEditingController();
-    final passwordCntrl = TextEditingController();
-    final _SINGUPkey = GlobalKey<FormState>();
+    log('login');
+    final provider = Provider.of<LoginProvider>(context, listen: false);
     void chekLogin(context) async {
-      final username2 = usernameCntrl.text;
-      final password2 = passwordCntrl.text;
+      final username2 = provider.usernameCntrLog.text;
+      final password2 = provider.passwordCntrLog.text;
       if (username == username2 && passwoed == password2) {
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setBool(SAVE_KEY, true);
@@ -70,7 +74,7 @@ class Singin extends StatelessWidget {
             Column(
               children: [
                 Form(
-                  key: _SINGUPkey,
+                  key: provider.sINGUPkeyLOG,
                   child: Column(
                     children: [
                       Padding(
@@ -87,7 +91,7 @@ class Singin extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: usernameCntrl,
+                            controller: provider.usernameCntrLog,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30)),
@@ -105,22 +109,33 @@ class Singin extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white),
-                          child: TextFormField(
-                            obscureText: true,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'not valid';
-                              }
-                              return null;
-                            },
-                            controller: passwordCntrl,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              prefixIcon: const Icon(Icons.hide_source_rounded),
-                              hintText: 'PASSWORD ',
-                            ),
-                          ),
+                          child: Consumer<SignAndLoginProvider>(
+                              builder: (context, pro, _) {
+                            return TextFormField(
+                              obscureText: pro.isObscured,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'not valid';
+                                }
+                                return null;
+                              },
+                              controller: provider.passwordCntrLog,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                prefixIcon: const Icon(Icons.lock),
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    pro.passwordFunction();
+                                  },
+                                  icon: Icon(pro.isObscured
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                ),
+                                hintText: 'PASSWORD ',
+                              ),
+                            );
+                          }),
                         ),
                       ),
                       const Gap(20),
@@ -130,7 +145,8 @@ class Singin extends StatelessWidget {
                                 MaterialStatePropertyAll(Colors.black87),
                           ),
                           onPressed: () {
-                            if (_SINGUPkey.currentState!.validate()) {
+                            if (provider.sINGUPkeyLOG.currentState!
+                                .validate()) {
                               chekLogin(context);
                             }
                           },

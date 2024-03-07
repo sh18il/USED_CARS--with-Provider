@@ -7,7 +7,7 @@ import '../model/luxurycar/cars_model.dart';
 import '../model/mediumcar/medium_cars_model.dart';
 
 class DbFunctionsProvider extends ChangeNotifier {
-  final DbFunctions DbFunctionsService = DbFunctions();
+  final DbFunctions dbFunctionsService = DbFunctions();
   List<CarsModel> searchedListLuxury = [];
   List<MediumCarsModel> searchedListMedium = [];
   List<LowCarsModel> searchedListLow = [];
@@ -17,25 +17,25 @@ class DbFunctionsProvider extends ChangeNotifier {
   List<MediumCarsModel> carsMediumListNotifier = [];
 
   Future<void> addCars(DataBases type, value) async {
-    DbFunctionsService.addCar(type, value);
-      getAllCarsP(type);
+    dbFunctionsService.addCar(type, value);
+    getAllCarsP(type);
   }
 
   void getAllCarsP(DataBases type) async {
-    carsListNotifier = await DbFunctionsService.getAllCars(DataBases.LuxuryDb);
-    carsLowListNotifier = await DbFunctionsService.getAllCars(DataBases.LowDb);
+    carsListNotifier = await dbFunctionsService.getAllCars(DataBases.luxuryDb);
+    carsLowListNotifier = await dbFunctionsService.getAllCars(DataBases.lowDb);
     carsMediumListNotifier =
-        await DbFunctionsService.getAllCars(DataBases.MediumDb);
+        await dbFunctionsService.getAllCars(DataBases.mediumDb);
     notifyListeners();
   }
 
   void deleteCars(type, index) {
-    DbFunctionsService.deleteCar(type, index);
+    dbFunctionsService.deleteCar(type, index);
     getAllCarsP(type);
   }
 
   void editCarsP(type, index, value) {
-    DbFunctionsService.editCar(type, index, value);
+    dbFunctionsService.editCar(type, index, value);
     getAllCarsP(type);
   }
 

@@ -1,25 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
+import '../../controlls/sign_provider.dart';
 import 'sign_in.dart';
 
+// ignore: constant_identifier_names
 const SAVE_KEY = 'usrLogedin';
 
-
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final usernameCntr = TextEditingController();
-  final passwordCntr = TextEditingController();
-  final _SINGUPkey = GlobalKey<FormState>();
-
-  @override
   Widget build(BuildContext context) {
+    log('sign');
+    final provider = Provider.of<SignAndLoginProvider>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -43,7 +40,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Form(
-              key: _SINGUPkey,
+              key: provider.sINGUPkey,
               child: Column(
                 children: [
                   Padding(
@@ -60,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }
                           return null;
                         },
-                        controller: usernameCntr,
+                        controller: provider.usernameCntr,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30)),
@@ -74,27 +71,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      width: 305,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: TextFormField(
-                        obscureText: true,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'not valid';
-                          }
-                          return null;
-                        },
-                        controller: passwordCntr,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          prefixIcon: const Icon(Icons.hide_source_rounded),
-                          hintText: 'PASSWORD ',
-                        ),
-                      ),
-                    ),
+                        width: 305,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: Consumer<SignAndLoginProvider>(
+                            builder: (context, pro, _) {
+                          return TextFormField(
+                            obscureText: pro.isObscured,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Password is required';
+                              }
+                              return null;
+                            },
+                            controller: provider.passwordCntr,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  pro.passwordFunction();
+                                },
+                                icon: Icon(pro.isObscured
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
+                              hintText: 'Password',
+                            ),
+                          );
+                        })),
                   ),
                   const Gap(20),
                   ElevatedButton(
@@ -103,13 +111,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             MaterialStatePropertyAll(Colors.black87),
                       ),
                       onPressed: () {
-                        if (_SINGUPkey.currentState!.validate()) {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => Singin(
-                                      username: usernameCntr.text,
-                                      passwoed: passwordCntr.text)));
-                        }
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Confirm USERNAME & PASSWORD"),
+                              content: const Text("Are you sure ?"),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text("Cancel"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text("OK"),
+                                  onPressed: () {
+                                    if (provider.sINGUPkey.currentState!
+                                        .validate()) {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) => Singin(
+                                                username:
+                                                    provider.usernameCntr.text,
+                                                passwoed: provider
+                                                    .passwordCntr.text)),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       },
                       child: Container(
                           width: 50,
