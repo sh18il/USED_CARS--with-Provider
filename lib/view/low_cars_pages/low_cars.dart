@@ -63,8 +63,8 @@ class LowCars extends StatelessWidget {
         children: [
           Expanded(
             child:
-                Consumer<DbFunctionsProvider>(builder: (context, provider, _) {
-              final searchPro = Provider.of<SearchProvider>(context);
+                Consumer2<DbFunctionsProvider,SearchProvider>(builder: (context, provider,searchPro, _) {
+            
               final carLList = provider.carsLowListNotifier;
 
               return searchPro.searchLow.isNotEmpty

@@ -24,4 +24,5 @@ class EditScreenProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  
 }

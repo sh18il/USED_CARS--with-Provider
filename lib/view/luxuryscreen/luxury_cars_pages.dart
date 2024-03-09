@@ -12,7 +12,7 @@ import 'package:royalcars/view/luxuryscreen/view_luxuy_screen.dart';
 import '../../controlls/add_provider.dart';
 import '../../controlls/dbfunctions_provider.dart';
 import '../../controlls/search_lprovider.dart';
-import '../editscreen_luxury.dart';
+import 'editscreen_luxury.dart';
 
 class LuxurycarsScreen extends StatelessWidget {
   const LuxurycarsScreen({Key? key}) : super(key: key);

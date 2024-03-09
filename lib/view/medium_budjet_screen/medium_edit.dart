@@ -175,34 +175,34 @@ class _MediumEditScreenState extends State<MediumEditScreen> {
 
   Future<void> updateAll() async {
     final prd = Provider.of<EditScreenProvider>(context, listen: false);
-    final namelx = prd.nameContrl.text;
-    final modellx = prd.modelContrl.text;
-    final kmlx = prd.kmContrl.text;
-    final dlnbrlx = prd.dlNumberContrl.text;
-    final ownerlx = prd.ownerContrl.text;
-    final pricelx = prd.priceContrl.text;
-    final futurelx = prd.futureContrl.text;
-    final imagelx = prd.selectImage!.path;
+    final nameMd = prd.nameContrl.text;
+    final modelMd = prd.modelContrl.text;
+    final kmMd = prd.kmContrl.text;
+    final dlnbrMd = prd.dlNumberContrl.text;
+    final ownerMd = prd.ownerContrl.text;
+    final priceMd = prd.priceContrl.text;
+    final futureMd = prd.futureContrl.text;
+    final imageMd = prd.selectImage!.path;
 
-    if (namelx.isEmpty ||
-        modellx.isEmpty ||
-        kmlx.isEmpty ||
-        dlnbrlx.isEmpty ||
-        ownerlx.isEmpty ||
-        pricelx.isEmpty ||
-        futurelx.isEmpty ||
-        imagelx.isEmpty) {
+    if (nameMd.isEmpty ||
+        modelMd.isEmpty ||
+        kmMd.isEmpty ||
+        dlnbrMd.isEmpty ||
+        ownerMd.isEmpty ||
+        priceMd.isEmpty ||
+        futureMd.isEmpty ||
+        imageMd.isEmpty) {
       return;
     } else {
       final update = MediumCarsModel(
-          name: namelx,
-          model: modellx,
-          km: kmlx,
-          dlnumber: dlnbrlx,
-          owner: ownerlx,
-          price: pricelx,
-          future: futurelx,
-          image: imagelx);
+          name: nameMd,
+          model: modelMd,
+          km: kmMd,
+          dlnumber: dlnbrMd,
+          owner: ownerMd,
+          price: priceMd,
+          future: futureMd,
+          image: imageMd);
       Provider.of<DbFunctionsProvider>(context, listen: false)
           .editCarsP(DataBases.mediumDb, widget.index, update);
     }

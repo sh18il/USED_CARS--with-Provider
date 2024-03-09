@@ -172,34 +172,34 @@ class _EditLuxuryState extends State<EditLowCarScreen> {
 
   Future<void> updateAll() async {
     final prd = Provider.of<EditScreenProvider>(context, listen: false);
-    final namelx = prd.nameContrl.text;
-    final modellx = prd.modelContrl.text;
-    final kmlx = prd.kmContrl.text;
-    final dlnbrlx = prd.dlNumberContrl.text;
-    final ownerlx = prd.ownerContrl.text;
-    final pricelx = prd.priceContrl.text;
-    final futurelx = prd.futureContrl.text;
-    final imagelx = prd.selectImage!.path;
+    final nameLow = prd.nameContrl.text;
+    final modelLow = prd.modelContrl.text;
+    final kmLow = prd.kmContrl.text;
+    final dlnbrLow = prd.dlNumberContrl.text;
+    final ownerlow = prd.ownerContrl.text;
+    final priceLow = prd.priceContrl.text;
+    final futureLow = prd.futureContrl.text;
+    final imageLow = prd.selectImage!.path;
 
-    if (namelx.isEmpty ||
-        modellx.isEmpty ||
-        kmlx.isEmpty ||
-        dlnbrlx.isEmpty ||
-        ownerlx.isEmpty ||
-        pricelx.isEmpty ||
-        futurelx.isEmpty ||
-        imagelx.isEmpty) {
+    if (nameLow.isEmpty ||
+        modelLow.isEmpty ||
+        kmLow.isEmpty ||
+        dlnbrLow.isEmpty ||
+        ownerlow.isEmpty ||
+        priceLow.isEmpty ||
+        futureLow.isEmpty ||
+        imageLow.isEmpty) {
       return;
     } else {
       final update = LowCarsModel(
-          name: namelx,
-          model: modellx,
-          km: kmlx,
-          dlnumber: dlnbrlx,
-          owner: ownerlx,
-          price: pricelx,
-          future: futurelx,
-          image: imagelx);
+          name: nameLow,
+          model: modelLow,
+          km: kmLow,
+          dlnumber: dlnbrLow,
+          owner: ownerlow,
+          price: priceLow,
+          future: futureLow,
+          image: imageLow);
       Provider.of<DbFunctionsProvider>(context, listen: false)
           .editCarsP(DataBases.lowDb, widget.index, update);
     }

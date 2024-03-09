@@ -14,9 +14,10 @@ import '../../model/mediumcar/medium_cars_model.dart';
 
 class Midiumcars extends StatelessWidget {
   const Midiumcars({Key? key}) : super(key: key);
-
+   
   @override
   Widget build(BuildContext context) {
+     final searchPro = Provider.of<SearchProvider>(context,listen: false);
     log('medium');
     return Scaffold(
       appBar: AppBar(
@@ -30,12 +31,12 @@ class Midiumcars extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(10)),
-              child: Consumer<SearchProvider>(builder: (context, provider, _) {
-                return TextFormField(
+              
+               child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   onChanged: (value) {
-                    provider.searchM = value;
-                    provider.searchListUpdateMedium(context);
+                    searchPro.searchM = value;
+                    searchPro.searchListUpdateMedium(context);
                   },
                   decoration: const InputDecoration(
                       icon: Icon(
@@ -45,17 +46,17 @@ class Midiumcars extends StatelessWidget {
                       hintText: 'Search here.. Medium cars',
                       hintStyle: TextStyle(color: Colors.white),
                       border: InputBorder.none),
-                );
-              })),
+                ),
+              ),
         ),
         actions: [
-          Consumer<SearchProvider>(builder: (context, provider, _) {
-            return IconButton(
+         
+            IconButton(
                 onPressed: () {
-                  provider.searchListUpdateMedium(context);
+                  searchPro.searchListUpdateMedium(context);
                 },
-                icon: const Icon(Icons.refresh));
-          }),
+                icon: const Icon(Icons.refresh))
+        
         ],
       ),
       body: Column(
@@ -63,7 +64,7 @@ class Midiumcars extends StatelessWidget {
           Expanded(
             child:
                 Consumer<DbFunctionsProvider>(builder: (context, provider, _) {
-              final searchPro = Provider.of<SearchProvider>(context);
+             
               final carLList = provider.carsMediumListNotifier;
               return searchPro.searchM.isNotEmpty
                   ? provider.searchedListMedium.isEmpty

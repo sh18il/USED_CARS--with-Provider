@@ -9,9 +9,9 @@ import 'package:royalcars/model/luxurycar/cars_model.dart';
 
 import 'package:royalcars/view/widgets/editpage.dart';
 
-import '../controlls/add_provider.dart';
-import '../controlls/dbfunctions_provider.dart';
-import '../controlls/edit_screen_provider.dart';
+import '../../controlls/add_provider.dart';
+import '../../controlls/dbfunctions_provider.dart';
+import '../../controlls/edit_screen_provider.dart';
 
 // ignore: must_be_immutable
 class EditLuxury extends StatefulWidget {
@@ -172,34 +172,34 @@ class _EditLuxuryState extends State<EditLuxury> {
 
   Future<void> updateAll() async {
     final prd = Provider.of<EditScreenProvider>(context, listen: false);
-    final namelx = prd.nameContrl.text;
-    final modellx = prd.modelContrl.text;
-    final kmlx = prd.kmContrl.text;
-    final dlnbrlx = prd.dlNumberContrl.text;
-    final ownerlx = prd.ownerContrl.text;
-    final pricelx = prd.priceContrl.text;
-    final futurelx = prd.futureContrl.text;
-    final imagelx = prd.selectImage!.path;
+    final nameLx = prd.nameContrl.text;
+    final modelLx = prd.modelContrl.text;
+    final kmLx = prd.kmContrl.text;
+    final dlnbrLx = prd.dlNumberContrl.text;
+    final ownerLx = prd.ownerContrl.text;
+    final priceLx = prd.priceContrl.text;
+    final futureLx = prd.futureContrl.text;
+    final imageLx = prd.selectImage!.path;
 
-    if (namelx.isEmpty ||
-        modellx.isEmpty ||
-        kmlx.isEmpty ||
-        dlnbrlx.isEmpty ||
-        ownerlx.isEmpty ||
-        pricelx.isEmpty ||
-        futurelx.isEmpty ||
-        imagelx.isEmpty) {
+    if (nameLx.isEmpty ||
+        modelLx.isEmpty ||
+        kmLx.isEmpty ||
+        dlnbrLx.isEmpty ||
+        ownerLx.isEmpty ||
+        priceLx.isEmpty ||
+        futureLx.isEmpty ||
+        imageLx.isEmpty) {
       return;
     } else {
       final update = CarsModel(
-          name: namelx,
-          model: modellx,
-          km: kmlx,
-          dlnumber: dlnbrlx,
-          owner: ownerlx,
-          price: pricelx,
-          future: futurelx,
-          image: imagelx);
+          name: nameLx,
+          model: modelLx,
+          km: kmLx,
+          dlnumber: dlnbrLx,
+          owner: ownerLx,
+          price: priceLx,
+          future: futureLx,
+          image: imageLx);
       Provider.of<DbFunctionsProvider>(context, listen: false)
           .editCarsP(DataBases.luxuryDb, widget.index, update);
     }
