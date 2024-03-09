@@ -19,7 +19,7 @@ class BottomNav extends StatelessWidget {
         color: Colors.black,
         onTap: (newIndex) {
           provider.indexValue(newIndex);
-        },
+        }, 
         // ignore: prefer_const_literals_to_create_immutables
         items: [
           const Icon(
