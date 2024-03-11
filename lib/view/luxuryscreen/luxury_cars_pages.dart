@@ -66,7 +66,7 @@ class LuxurycarsScreen extends StatelessWidget {
         children: [
           Expanded(
             child:
-                Consumer<DbFunctionsProvider>(builder: (context, provider, _) {
+                Consumer2<DbFunctionsProvider,SearchProvider>(builder: (context, provider ,search, _) {
               return searchPro.searchLx.isNotEmpty
                   ? provider.searchedListLuxury.isEmpty
                       ? ListView(
